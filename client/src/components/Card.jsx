@@ -1,69 +1,57 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Card({ image }) {
-    const [pass, setPass] = useState("");
-    const [show, setShow] = useState(true)
-    const [error, setError] = useState(false)
-    const [url, setUrl] = useState("https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png")
+function Card({ todo, setTodos }) {
+  const navigate = useNavigate();
 
-    // console.log("entery",image.password,pass)
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (pass !== image.password) {
-            setError("please enter correct password")
-            setTimeout(()=>{
-                  setError(false)
-                  setPass("")
-            },2000)
-        }
-        if (pass === image.password) {
-            console.log(image.imageUrl)
-            setUrl(image.imageUrl);
-            setShow(!show);
-        }
-
+  useEffect(() => {
+    async function fetchTodos() {
+      try {
+        const response = await fetch("/api/todo", {
+          method: "GET",
+        });
+        const data = await response.json();
+        console.log(data);
+        setTodos(data.todos);
+      } catch (error) {
+        console.error('Error fetching todos:', error);
+      }
     }
-    const handleChange = (e) => {
-        setPass(e.target.value);
-    }
+    fetchTodos();
+  }, []);
 
-    const handleDownload = async (e) => {
-        e.preventDefault();
-      
-        try {
-          const response = await fetch(url);
-          const blob = await response.blob();
-          const downloadLink = document.createElement('a');
-          const blobUrl = window.URL.createObjectURL(blob);
-          downloadLink.href = blobUrl;
-          const arr = url.split('/');
-          downloadLink.download = arr[arr.length - 1];
-          document.body.appendChild(downloadLink);
-          downloadLink.click();
-          document.body.removeChild(downloadLink);
-          window.URL.revokeObjectURL(blobUrl);
-        } catch (error) {
-            setError("can't download image")
-        }
-      };
-      
-    return (
-        <div className='flex rounded-full'>
-            <div className='bg-transparent  flex flex-col justify-center items-center '>
-                <img className='bg-white rounded-sm w-64 h-64 object-contain' src={url} alt={url} />
-                {show ?
-                    <form onSubmit={handleSubmit} className='flex gap-2 my-2' >
-                        <input value={pass} onChange={handleChange} className='ring-1 pl-2 rounded-sm ' placeholder='enter password' type="password" />
-                        {show && <button className='bg-blue-400 px-2 rounded-sm' type='submit'>show</button>}
-                    </form>
-                    :
-                    <button onClick={handleDownload} className='bg-blue-400 m-2 w-full cursor-pointer rounded-sm' type='submit'>dowload</button>
-                }
-                {error && <p className='text-red-500 '>{error}</p>}
-            </div>
+  const handleDelete = async (id) => {
+    try {
+      const res = await fetch(`/api/todo/${id}`, {
+        method: 'DELETE',
+      });
+      await res.json();
+      setTodos((prevTodos) => prevTodos.filter((todo) => todo._id!== id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleEdit = async (id) => {
+    navigate(`/updatetodo/${id}`);
+  };
+
+  return (
+    <div className='bg-cyan-100 w-80 gap-4'>
+      <div className='bg-transparent  flex flex-col justify-end items-center '>
+        <h4 className='h-32 p-4'>{todo.detail}</h4>
+        <div className='flex gap-4 justify-center items-center p-2'>
+          <button onClick={() => handleEdit(todo._id)} className='bg-sky-500 hover:bg-sky-400 rounded-md px-2 py-1 '>
+            Edit Todo
+          </button>
+          <button onClick={() => handleDelete(todo._id)} className='bg-red-500 hover:bg-red-400 rounded-md px-2 py-1 '>
+            Delete Todo
+          </button>
         </div>
-    )
+      </div>
+    </div>
+  );
 }
 
-export default Card
+export default Card;

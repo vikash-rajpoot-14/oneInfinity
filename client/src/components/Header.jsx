@@ -31,34 +31,47 @@ export default function Header() {
     <header className='bg-slate-200 shadow-md sticky top-0'>
       <div className='flex justify-between items-center max-w-6xl mx-auto p-3'>
         <Link to='/'>
-        <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
-          <span className='text-slate-500'>Purezza</span>
-          <span className='text-slate-700'>Technologies</span>
-        </h1>
+          <h1 className='font-bold text-sm sm:text-xl flex flex-wrap'>
+            <span className='text-slate-500'>One</span>
+            <span className='text-slate-700'>Infinity</span>
+          </h1>
         </Link>
-        <ul className='flex gap-4'>
-          {currentUser &&
-            <img
-              className='rounded-full h-7 w-7 object-cover'
-              src={currentUser.avatar}
-              alt='profile'
-            />
-          }
-          {currentUser ? <li onClick={handleSignOut} className='hover:cursor-pointer text-slate-700 hover:underline'> Sign Out</li> : (
-            <div className='flex gap-8'>
-              <Link to='/signup'>
-                <li className='hidden sm:inline text-slate-700 hover:underline'>
-                  Sign Up
-                </li>
-              </Link>
-              <Link to='/signin'>
-                <li className='hidden sm:inline text-slate-700 hover:underline'>
-                  Sign In
-                </li>
-              </Link>
-            </div>
+        <div className='flex gap-8 justify-center items-center'>
+          <Link to='/todo'>
+            <li className='hidden sm:inline text-slate-700 hover:underline'>
+              Todo
+            </li>
+          </Link>
+          <Link to='/addtodo'>
+            <li className='hidden sm:inline text-slate-700 hover:underline mr-6'>
+              AddTodo
+            </li>
+          </Link>
+          <ul className='flex gap-4'>
+            {currentUser &&
+              <img
+                className='rounded-full h-7 w-7 object-cover'
+                src={currentUser.avatar}
+                alt='profile'
+              />
+            }
+            {currentUser ? <li onClick={handleSignOut} className='hover:cursor-pointer text-slate-700 hover:underline'> Sign Out</li> : (
+              <div className='flex gap-8'>
+
+                <Link to='/signup'>
+                  <li className='hidden sm:inline text-slate-700 hover:underline'>
+                    Sign Up
+                  </li>
+                </Link>
+                <Link to='/signin'>
+                  <li className='hidden sm:inline text-slate-700 hover:underline'>
+                    Sign In
+                  </li>
+                </Link>
+              </div>
             )}
-        </ul>
+          </ul>
+        </div>
       </div>
     </header>
   );

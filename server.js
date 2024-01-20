@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 import authRouter from './routes/authRoute.js';
-import imageRouter from './routes/imageRoute.js';
+import todoRouter from './routes/todoRoute.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
@@ -22,14 +22,13 @@ mongoose
 const app = express();
 
 app.use(cors());
-app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ limit: '50mb', extended: true }));
+app.use(express.json());
 
 app.use(cookieParser());
 const PORT = process.env.PORT||5000;
 
 app.use('/api/auth', authRouter);
-app.use('/api/image',imageRouter );
+app.use('/api/todo',todoRouter );
 
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;
