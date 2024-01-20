@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Card from '../components/Card';
 
 function Todo() {
-  const [todos, setTodos] = useState([{_id:1 , detail : "todo1"}, {_id:2 , detail : "todo2"}]);
+  const [todos, setTodos] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
