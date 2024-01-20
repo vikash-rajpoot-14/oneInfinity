@@ -28,6 +28,9 @@ app.use(cookieParser());
 const PORT = process.env.PORT||3000;
 
 //routes middleware
+app.get("/",(req, res) => {
+  res.send("Hello World!");
+})
 app.use('/api/auth', authRouter);
 app.use('/api/todo',todoRouter );
 
