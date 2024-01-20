@@ -27,7 +27,7 @@ function Todo() {
       <h1 className='justify-center flex p-4 font-bold text-2xl'>All Todos</h1>
       <ul className='flex flex-wrap '>
         {todos?.map((todo) => (
-          <li className='p-2 m-2' key={todo._id}>
+          <li className='p-2 m-auto' key={todo._id}>
             <Card todo={todo} setTodos={setTodos} />
           </li>
         ))}

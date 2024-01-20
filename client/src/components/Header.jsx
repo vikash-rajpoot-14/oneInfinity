@@ -38,12 +38,12 @@ export default function Header() {
         </Link>
         <div className='flex gap-8 justify-center items-center'>
           <Link to='/todo'>
-            <li className='hidden sm:inline text-slate-700 hover:underline'>
-              Todo
+            <li className='hidden sm:inline text-slate-700 hover:text-slate-400 hover:underline'>
+              Todos
             </li>
           </Link>
           <Link to='/addtodo'>
-            <li className='hidden sm:inline text-slate-700 hover:underline mr-6'>
+            <li className='hidden sm:inline text-slate-700 hover:text-slate-400 hover:underline mr-6'>
               AddTodo
             </li>
           </Link>

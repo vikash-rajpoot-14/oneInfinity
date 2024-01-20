@@ -60,10 +60,10 @@ function UpdateTodo() {
   return (
     <div className='w-screen h-screen flex flex-col justify-start items-center'>
       <form onSubmit={handleSubmit} className='mt-10 rounded-lg bg-white p-6 shadow shadow-slate-400 border-solid'>
-        <h1 className='m-2 text-center font-semibold text-gray-600'>Update Todo</h1>
+        <h1 className='m-2 text-center text-lg font-semibold text-gray-600'>Update Todo</h1>
         <div className='flex flex-col rounded justify-center items-center'>
           <textarea
-            className='p-4 overflow-hidden'
+            className='p-4 overflow-hidden border-2 border-black'
             id='detail'
             value={todo?.detail}
             onChange={handleChange} 
@@ -72,7 +72,7 @@ function UpdateTodo() {
             rows={10}
           ></textarea>
           <button
-            className='bg-sky-500 my-2 hover:bg-sky-400 cursor-pointer w-full uppercase text-gray-300'
+            className='bg-sky-500 my-2 rounded-sm hover:bg-sky-400 cursor-pointer w-full uppercase text-gray-300'
             disabled={loading}
             type='submit'
           >

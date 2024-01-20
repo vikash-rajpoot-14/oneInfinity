@@ -1,9 +1,9 @@
 import { errorHandler } from '../utils/error.js';
 import Todo from '../models/Todo.js';
 
+//add todo
 export const AddTodo = async (req, res, next) => {
   try {
-
     const { detail } = req.body;
     if(!detail) return next(errorHandler(400 , "please fill all required fields"))
  
@@ -20,6 +20,7 @@ export const AddTodo = async (req, res, next) => {
   }
 };
 
+//get a todo
 export const getTodo = async (req, res, next) => {
   try {
     const id  = req.params.id;
@@ -31,6 +32,7 @@ export const getTodo = async (req, res, next) => {
   }
 };
 
+//get all todo
 export const getAllTodo = async (req, res, next) => {
   try {
     const todos = await Todo.find({userId: req.user.id});
@@ -40,7 +42,7 @@ export const getAllTodo = async (req, res, next) => {
   }
 };
 
-
+//delete todo
 export const deleteTodo = async (req, res, next) => {
   try {
     const id  = req.params.id;
@@ -51,6 +53,7 @@ export const deleteTodo = async (req, res, next) => {
   }
 };
 
+//update todo
 export const updateTodo = async (req, res, next) => {
   try {
     const id  = req.params.id;
