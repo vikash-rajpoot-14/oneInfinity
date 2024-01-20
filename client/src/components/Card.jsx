@@ -1,37 +1,31 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Card({ todo, setTodos }) {
   const navigate = useNavigate();
 
-
-  useEffect(() => {
-    async function fetchTodos() {
-      try {
-        const response = await fetch("/api/todo", {
-          method: "GET",
-        });
-        const data = await response.json();
-        console.log(data);
-        setTodos(data.todos);
-      } catch (error) {
-        console.error('Error fetching todos:', error);
-      }
-    }
-    fetchTodos();
-  }, []);
-
   const handleDelete = async (id) => {
+    console.log(id);
     try {
       const res = await fetch(`/api/todo/${id}`, {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       });
-      await res.json();
-      setTodos((prevTodos) => prevTodos.filter((todo) => todo._id!== id));
+    
+      if (res.ok) {
+        const data = await res.text();
+        const parsedData = data ? JSON.parse(data) : null;
+        setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
+      } else {
+        console.error('Failed to delete todo:', res.status);
+      }
     } catch (error) {
-      console.log(error);
+      console.error('Error deleting todo:', error);
     }
   };
+  
 
   const handleEdit = async (id) => {
     navigate(`/updatetodo/${id}`);

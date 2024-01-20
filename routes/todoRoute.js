@@ -7,10 +7,10 @@ const router = express.Router();
 
 
 router.post('/',verifyToken, AddTodo);
-router.get('/:id', getTodo);
+router.get('/:id',verifyToken, getTodo);
 router.get('/',verifyToken, getAllTodo);
-router.put('/:id', updateTodo);
-router.delete('/:id', deleteTodo);
+router.put('/:id',verifyToken ,updateTodo);
+router.delete('/:id',verifyToken, deleteTodo);
 
 
 export default router;

@@ -20,22 +20,6 @@ function Todo() {
     fetchTodos();
   }, []);
 
-  const handleDelete = async (id) => {
-    try {
-      const response = await fetch(`/api/todo/${id}`, {
-        method: 'DELETE',
-      });
-
-      if (response.ok) {
-        setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
-      } else {
-        console.error('Failed to delete todo:', response.status);
-      }
-    } catch (error) {
-      console.error('Error deleting todo:', error);
-    }
-  };
-
   return (
     <div>
       <h1 className='justify-center flex p-4 font-bold text-2xl'>All Todos</h1>

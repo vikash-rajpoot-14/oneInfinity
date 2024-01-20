@@ -44,8 +44,7 @@ export const getAllTodo = async (req, res, next) => {
 export const deleteTodo = async (req, res, next) => {
   try {
     const id  = req.params.id;
-    console.log("dletee",id)
-     await Todo.findByIdAndDelete(id);
+    const data =  await Todo.findByIdAndDelete(id);
     return res.status(204).json({status:"todo deleted successfully"});
   } catch (error) {
     next(error);
