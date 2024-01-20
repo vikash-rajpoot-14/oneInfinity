@@ -6,6 +6,9 @@ import User from '../models/User.js';
 export const signup = async (req, res, next) => {
   const { username, email, password } = req.body;
   try {
+    if(!username || !password ||!email) {
+      return next(errorHandler(400, 'Please fill all fields'));
+    }
     const hashedPassword = bcryptjs.hashSync(password, 10);
     const validUser = await User.findOne({ email });
     if (validUser) return next(errorHandler(401, 'email already in use ! try signin'));
@@ -24,6 +27,9 @@ export const signup = async (req, res, next) => {
 export const signin = async (req, res, next) => {
   const { email, password } = req.body;
   try {
+    if(!password ||!email) {
+      return next(errorHandler(400, 'Please fill all fields'));
+    }
     const validUser = await User.findOne({ email });
     if (!validUser) return next(errorHandler(404, 'User not found!'));
     const validPassword = bcryptjs.compareSync(password, validUser.password);

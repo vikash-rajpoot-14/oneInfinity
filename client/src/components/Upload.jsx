@@ -4,7 +4,7 @@ function Upload() {
   const initialFormData = { detail: "" };
   const [formdata, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
-
+  const [error, setError] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,6 +25,7 @@ function Upload() {
       document.getElementById('detail').value = "";
     } catch (error) {
       setLoading(false);
+      setError(error.message);
     }
   };
 
@@ -48,6 +49,7 @@ function Upload() {
               </button>
           </div>
         </form>
+        {error && <p className='text-red-500 mt-5'>{error}</p>}
       </div>
   );
 }

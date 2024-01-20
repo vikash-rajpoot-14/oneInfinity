@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 function UpdateTodo() {
   const [loading, setLoading] = useState(false);
   const [todo, setTodo] = useState({ detail: "" });
+  const [error, setError] = useState(null);
   const param = useParams();
   const navigate = useNavigate()
   const id = param.id;
@@ -29,6 +30,7 @@ function UpdateTodo() {
       navigate("/todo")
     } catch (error) {
       setLoading(false);
+      setError(error.message);
     }
   };
 
@@ -78,6 +80,7 @@ function UpdateTodo() {
           </button>
         </div>
       </form>
+      {error && <p className='text-red-500 mt-5'>{error}</p>}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import Card from '../components/Card';
 
 function Todo() {
   const [todos, setTodos] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchTodos() {
@@ -15,6 +16,7 @@ function Todo() {
         setTodos(data.todos);
       } catch (error) {
         console.error('Error fetching todos:', error);
+        setError(error.message);
       }
     }
     fetchTodos();
@@ -30,6 +32,7 @@ function Todo() {
           </li>
         ))}
       </ul>
+      {error && <p className='text-red-500 mt-5'>{error}</p>}
     </div>
   );
 }
