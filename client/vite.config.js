@@ -6,7 +6,7 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://one-infinity-server.vercel.app/',
+        target: 'https://oneinfinity.onrender.com/',
         secure: false,
       },
     },
