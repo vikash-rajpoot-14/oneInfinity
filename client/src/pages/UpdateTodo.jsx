@@ -63,7 +63,7 @@ function UpdateTodo() {
           <textarea
             className='p-4 overflow-hidden'
             id='detail'
-            value={todo.detail}
+            value={todo?.detail}
             onChange={handleChange} 
             placeholder='update todo ...'
             cols={60}
