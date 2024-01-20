@@ -6,15 +6,15 @@ import { AddTodo, deleteTodo, getAllTodo, getTodo, updateTodo } from '../control
 const router = express.Router();
 
 //add todo
-router.post('/',verifyToken, AddTodo);
+router.post('/', AddTodo);
 //get a todo
-router.get('/:id',verifyToken, getTodo);
+router.get('/:id', getTodo);
 //get all todo
-router.get('/',verifyToken, getAllTodo);
+router.get('/', getAllTodo);
 //update a todo
-router.put('/:id',verifyToken ,updateTodo);
+router.put('/:id' ,updateTodo);
 //delete a todo
-router.delete('/:id',verifyToken, deleteTodo);
+router.delete('/:id', deleteTodo);
 
 
 export default router;
