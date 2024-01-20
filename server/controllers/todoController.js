@@ -35,7 +35,7 @@ export const getTodo = async (req, res, next) => {
 //get all todo
 export const getAllTodo = async (req, res, next) => {
   try {
-    const todos = await Todo.find({userId: req.user.id});
+    const todos = await Todo.find();
     return res.status(201).json({status:"success", todos});
   } catch (error) {
     next(error);
