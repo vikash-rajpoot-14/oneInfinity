@@ -47,7 +47,7 @@ export default function Header() {
               AddTodo
             </li>
           </Link>
-          <ul className='flex gap-4'>
+          {/* <ul className='flex gap-4'>
             {currentUser &&
               <img
                 className='rounded-full h-7 w-7 object-cover'
@@ -70,7 +70,7 @@ export default function Header() {
                 </Link>
               </div>
             )}
-          </ul>
+          </ul> */}
         </div>
       </div>
     </header>
