@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
 
 function Upload() {
   const initialFormData = { detail: "" };
   const [formdata, setFormData] = useState(initialFormData);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const data  = useSelector(state=>state.user)
+  console.log(data)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch('https://oneinfinity.onrender.com/api/todo', {
+      const res = await fetch('http://localhost:3000/api/todo', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

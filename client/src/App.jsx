@@ -15,15 +15,15 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path='/signin' element={<SignIn />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route element={<PrivateRoute/>}>
+        {/* <Route path='/signin' element={<SignIn />} /> */}
+        {/* <Route path='/signup' element={<SignUp />} /> */}
+        {/* <Route element={<PrivateRoute/>}> */}
         <Route path='/' element={<Home/>} />
         <Route path='/addtodo' element={<Upload/>} />
         <Route path='/todo' element={<Todo/>} />
         <Route path='/updatetodo/:id' element={<UpdateTodo/>} />
 
-        </Route>
+        {/* </Route> */}
       </Routes>
     </BrowserRouter>
    

@@ -8,7 +8,7 @@ function Todo() {
   useEffect(() => {
     async function fetchTodos() {
       try {
-        const response = await fetch("https://oneinfinity.onrender.com/api/todo", {
+        const response = await fetch("http://localhost:3000/api/todo", {
           method: "GET",
         });
         const data = await response.json();

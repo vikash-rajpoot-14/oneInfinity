@@ -9,7 +9,6 @@ export const AddTodo = async (req, res, next) => {
  
     const newTodo = new Todo({
       detail: detail,
-      userId: req.user.id,
     });
 
     await newTodo.save();
