@@ -13,7 +13,7 @@ function Upload() {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:3000/api/todo', {
+      const res = await fetch('https://oneinfinity.onrender.com/api/todo', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

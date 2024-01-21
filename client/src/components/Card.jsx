@@ -7,7 +7,7 @@ function Card({ todo, setTodos }) {
   const handleDelete = async (id) => {
     console.log(id);
     try {
-      const res = await fetch(`http://localhost:3000/api/todo/${id}`, {
+      const res = await fetch(`https://oneinfinity.onrender.com/api/todo/${id}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

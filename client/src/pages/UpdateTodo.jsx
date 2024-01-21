@@ -14,7 +14,7 @@ function UpdateTodo() {
     setLoading(true);
 
     try {
-      const res = await fetch(`http://localhost:3000/api/todo/${id}`, {
+      const res = await fetch(`https://oneinfinity.onrender.com/api/todo/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -37,7 +37,7 @@ function UpdateTodo() {
   useEffect(() => {
     async function fetchTodo() {
       try {
-        const response = await fetch(`http://localhost:3000/api/todo/${id}`);
+        const response = await fetch(`https://oneinfinity.onrender.com/api/todo/${id}`);
         const data = await response.json();
         console.log(data);
         setTodo(data.todo);

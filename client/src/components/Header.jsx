@@ -11,7 +11,7 @@ export default function Header() {
     e.preventDefault();
     try {
       dispatch(signOutUserStart());
-      const res = await fetch('http://localhost:3000/api/auth/signout');
+      const res = await fetch('https://oneinfinity.onrender.com/api/auth/signout');
       const data = await res.json();
       console.log("data", data);
       console.log(currentUser)

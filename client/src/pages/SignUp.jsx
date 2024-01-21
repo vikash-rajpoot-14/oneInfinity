@@ -44,7 +44,7 @@ export default function SignUp() {
     e.preventDefault();
     try {
       dispatch(signInStart());
-      const res = await fetch('http://localhost:3000/api/auth/signup', {
+      const res = await fetch('https://oneinfinity.onrender.com/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
