@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router-dom';
 function Card({ todo, setTodos }) {
   const navigate = useNavigate();
   const [error ,setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+
   const handleDelete = async (id) => {
-    console.log(id);
+    setLoading(true)
     try {
       const res = await fetch(`https://oneinfinity.onrender.com/api/todo/${id}`, {
         method: 'DELETE',
@@ -18,6 +20,7 @@ function Card({ todo, setTodos }) {
         const data = await res.text();
         const parsedData = data ? JSON.parse(data) : null;
         setTodos((prevTodos) => prevTodos.filter((todo) => todo._id !== id));
+        setLoading(false)
       } else {
         console.error('Failed to delete todo:', res.status);
       }
@@ -41,7 +44,7 @@ function Card({ todo, setTodos }) {
           Edit Todo
         </button>
         <button onClick={() => handleDelete(todo._id)} className='bg-red-500 hover:bg-red-400 rounded-md px-3 py-2 '>
-          Delete Todo
+         {loading ? "Deleting.." :  "Delete Todo"}
         </button>
       </div>
     </div>
