@@ -17,7 +17,7 @@ function Todo() {
         const data = await response.json();
         console.log(data);
         setTodos(data.todos);
-        setLoading(true)
+        setLoading(false)
       } catch (error) {
         console.error('Error fetching todos:', error);
         setError(error.message);
@@ -28,9 +28,9 @@ function Todo() {
 
   return (
     <div>
+        {loading && <Loader/>}
       <h1 className='justify-center flex p-4 font-bold text-2xl'>All Todos</h1>
       <ul className='flex flex-wrap '>
-        {loading && <Loader/>}
         {todos?.map((todo) => (
           <li className='p-2 m-auto' key={todo._id}>
             <Card todo={todo} setTodos={setTodos} />
